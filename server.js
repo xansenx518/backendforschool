@@ -16,9 +16,9 @@ const ADMIN_USER = process.env.ADMIN_USER || 'admin'
 const ADMIN_PASS = process.env.ADMIN_PASS || 'admin123'
 const ADMIN_TOKEN = process.env.ADMIN_TOKEN || 'admin-secret-token'
 
-const FRONTEND_ORIGIN = process.env.FRONTEND_ORIGIN || 'http://localhost:5174'
+const ALLOWED_ORIGINS = (process.env.FRONTEND_ORIGINS || 'http://localhost:5174,https://marinasschoolsupply.vercel.app').split(',')
 
-app.use(cors({ origin: FRONTEND_ORIGIN, credentials: true }))
+app.use(cors({ origin: ALLOWED_ORIGINS, credentials: true }))
 app.use(express.json())
 
 const parseCookies = (cookieHeader = '') =>
